@@ -5,8 +5,7 @@ CFLAGS = -Wall
 all: floodIt
 
 floodIt: main.o 
-	$(CC) -o Floodit main.c lib/floodIt_functions.c
-
+	$(CC) -DEBUG main.c lib/floodIt_functions.c -o Floodit 
 
 %.o: %.c 
 	$(CC) $(CFLAGS) -c  $@ $<
