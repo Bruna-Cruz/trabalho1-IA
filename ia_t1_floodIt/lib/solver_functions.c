@@ -12,7 +12,7 @@ float calc_heuristic(int nColored){
 }
 
 void solve_game(node_t * currentNode){
-  #ifndef DEBUG 
+  #ifdef DEBUG 
     printf("Inciando solver \n");
   #endif
 
@@ -20,7 +20,7 @@ void solve_game(node_t * currentNode){
   int indexBetter= 0;
 
   
-  #ifndef DEBUG
+  #ifdef DEBUG
     print_instance(currentNode);
   #endif
 
@@ -52,7 +52,7 @@ while(elements != currentNode->nColored) {
           indexBetter = i; 
         }
 
-        #ifndef DEBUG
+        #ifdef DEBUG
           print_instance(currentNode->children[i]);
           printf("HEURISTICA %f\n\n\n", currentNode->children[i]->heuristic);
         #endif

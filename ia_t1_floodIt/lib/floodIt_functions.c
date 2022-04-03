@@ -83,7 +83,7 @@ void color (node_t *mapInfo, int newColor) {
   int oldColor = mapInfo->map[0][0].color;
   mapInfo->color = newColor;
 
-  #ifndef DEBUG
+  #ifdef DEBUG
     printf("current color: %i \n", oldColor);
   #endif
 
@@ -97,7 +97,7 @@ void color (node_t *mapInfo, int newColor) {
 
         auxMap[i][j].color = newColor;
         
-        #ifndef DEBUG 
+        #ifdef DEBUG 
           printf("-->This element has status colored %i %i color is %i\n",i, j,auxMap[i][j].color);
         #endif
        
@@ -105,7 +105,7 @@ void color (node_t *mapInfo, int newColor) {
         //test status of neighbors
         if (test_conection(mapInfo, i, j)){
                                                                                                                                                      
-          #ifndef DEBUG
+          #ifdef DEBUG
             printf("-->Some neighbor has status colored %i %i\n",i, j);
           #endif
 
@@ -125,7 +125,7 @@ void color (node_t *mapInfo, int newColor) {
     }
     printf("\n");
   }
-  #ifndef DEBUG
+  #ifdef DEBUG
     print_instance(mapInfo);
   #endif
 }

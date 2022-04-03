@@ -11,7 +11,7 @@ int main() {
 	printf("Inciando \n");
 	load_instance(&currentNode);
 
-	#ifndef DEBUG
+	#ifdef DEBUG
 		print_instance(&currentNode);
 	#endif
 
