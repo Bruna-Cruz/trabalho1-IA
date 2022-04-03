@@ -6,8 +6,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define MAX 105
-#define MAXCOLOR 50
+ #define DEBUG
+
+#define MAXCOLOR 21
 #define COLORED 1
 #define UNCOLORED 0
 
@@ -18,33 +19,44 @@ typedef struct {
   int color;
 } map_t;
 
+typedef struct node_s{
+  int maxRow, maxCol; // the max col or row that was colored in the instance
+  int color;
+  float heuristic;
 
-typedef struct {
-  
   int nColored;
   int steps;
 
   map_t **map;
-} mapInfo_t;
 
-
-typedef struct {
-  mapInfo_t *state;
-  int heuritic;
-
-  struct node_t **children;
+  struct node_s *children[MAXCOLOR];
 } node_t;
+
+typedef struct list_s {
+  int i;
+  struct list_s * next;
+} list_t;
 
 
 int maxColor;
-int  maxCol, maxRow; // the max col or row that was colored in the instance
 int nRows;
   int nCols;
   int nColors;
+int elements;
 
-void load_instance(mapInfo_t *mapInfo);
+list_t *list;
 
-void print_instance(mapInfo_t *mapInfo);
+void load_instance(node_t *mapInfo);
 
-void color (mapInfo_t *mapInfo, int color);
+void print_instance(node_t *mapInfo);
 
+void color (node_t *mapInfo, int color);
+
+void copy_parent(node_t *mapInfo_parent, node_t *mapInfo);
+
+void solve_game(node_t * currentNode);
+
+
+void print_color_seq(list_t first);
+
+list_t * push (list_t *current, int i);
