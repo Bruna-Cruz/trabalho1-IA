@@ -7,7 +7,6 @@ void inicilize_children(node_t *currentNode){
 }
 
 float calc_heuristic(int nColored){
-  printf("\n heuristicaa %i %i %i\n", elements, nColored, nColors);     
   return (elements - nColored)/(float)nColors;
 }
 
@@ -29,8 +28,8 @@ void solve_game(node_t * currentNode){
 list_t first;
 list_t *currentList = &first;
   
-//checks if found a solution
-while(elements != currentNode->nColored) {
+  //checks if found a solution
+  while(elements != currentNode->nColored) {
 
     inicilize_children(currentNode);
     currentNode->steps++;
@@ -42,7 +41,6 @@ while(elements != currentNode->nColored) {
 
       //skip color if it is the same
       if(currentNode->color != i+1){
-        printf("-- %i -- ", i);
         copy_parent(currentNode, currentNode->children[i]);
 
         color(currentNode->children[i], i+1);
@@ -54,18 +52,16 @@ while(elements != currentNode->nColored) {
 
         #ifdef DEBUG
           print_instance(currentNode->children[i]);
-          printf("HEURISTICA %f\n\n\n", currentNode->children[i]->heuristic);
+          printf("HEURISTICA %f\n\n", currentNode->children[i]->heuristic);
         #endif
       }
     }
-    printf("%i ", indexBetter);
     currentNode = currentNode->children[indexBetter];
-
     currentList = push(currentList, currentNode->color);
     
   }
   
-  printf("finished solving in %i steps\n", currentNode->steps);
+  printf("%i\n", currentNode->steps);
   print_color_seq(first);
 
 }

@@ -15,7 +15,6 @@ void load_instance (node_t *mapInfo) {
   mapInfo->steps = 0;  
   mapInfo->maxCol = mapInfo->maxRow = 0;
 
-  maxColor = nColors + 1;
   mapInfo->map = (map_t**) malloc(nRows * sizeof(map_t*));
 
   for (int i= 0; i < nRows; i++) {
@@ -40,7 +39,7 @@ void print_instance (node_t *mapInfo){
 
   }
 
-  printf("---------------------------------------------------------------------------------------------------\nSTATUS\n");
+  printf("-----------------------------------------------------------------------------------------------\nSTATUS\n");
   for(int i= 0; i < nRows; i++) {
     for(int j= 0; j < nCols; j++)
       printf("%d", mapInfo->map[i][j].status);
@@ -50,7 +49,7 @@ void print_instance (node_t *mapInfo){
 
 }
 
-///// test status form neighbors
+///// test status from neighbors
 bool test_conection (node_t *mapInfo, int i, int j){
 
 
@@ -98,16 +97,12 @@ void color (node_t *mapInfo, int newColor) {
         auxMap[i][j].color = newColor;
         
         #ifdef DEBUG 
-          printf("-->This element has status colored %i %i color is %i\n",i, j,auxMap[i][j].color);
+          printf("--> This element has status colored %i %i - color is %i\n",i, j,auxMap[i][j].color);
         #endif
        
       } else {
         //test status of neighbors
         if (test_conection(mapInfo, i, j)){
-                                                                                                                                                     
-          #ifdef DEBUG
-            printf("-->Some neighbor has status colored %i %i\n",i, j);
-          #endif
 
           if (auxMap[i][j].color == newColor){
             auxMap[i][j].status = COLORED;
@@ -121,9 +116,7 @@ void color (node_t *mapInfo, int newColor) {
           }
         }
       }
-      printf("%d", auxMap[i][j].color);
     }
-    printf("\n");
   }
   #ifdef DEBUG
     print_instance(mapInfo);
